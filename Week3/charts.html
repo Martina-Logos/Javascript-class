@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charts</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+</head>
+
+<!-- <body>
+ <h2 style="text-align: center; font-size: 50px; color: aqua;">My First Chart.js Bar Chart</h2>
+
+    <canvas id="myChart" width="300" height="100"></canvas>
+
+    <script>
+        // Get context of the canvas element we want to select
+        const ctx = document.getElementById('myChart').getContext('2d');
+
+        // Create a new Chart object
+        const myChart = new Chart(ctx, {
+            type: 'bar', // Bar chart type
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'], // X-axis labels
+                datasets: [{
+                    label: 'Votes',
+                    data: [12, 19, 3, 5, 2, 3], // Data points
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true // Start y-axis at zero
+                        }
+                    }]
+                }
+            }
+        });
+    </script>  -->
+
+<!-- <h2>My Pie Chart Example</h2>
+    <canvas id="myPieChart" width="200" height="200"></canvas>
+    
+     <script> 
+        const ctx = document.getElementById('myPieChart').getContext('2d');
+        const myPieChart = new Chart(ctx, {
+            type: 'pie', // Pie chart type
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'], // Pie slice labels
+                datasets: [{
+                    label: 'Votes',
+                    data: [12, 19, 3, 5, 2, 3], // Data values for each slice
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.7)',
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 206, 86, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(153, 102, 255, 0.7)',
+                        'rgba(255, 159, 64, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Sample Pie Chart'
+                    }
+                }
+            }
+        });
+    </script>-->
+
+<!-- <canvas id="myChart" width="400" height="100"></canvas>
+ <script> 
+    const ctx = document.getElementById('myChart').getContext('2d');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {            // No more "yAxes" array
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script> -->
+
+<!-- D3.js bar chart -->
+<h2 style="text-align: center;">My First D3.js Bar Chart</h2>
+<svg width="500" height="300"></svg>
+
+<script>
+    const labels = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'];
+    const data = [12, 19, 3, 5, 2, 3];
+
+    const svg = d3.select("svg");
+    const margin = { top: 20, right: 30, bottom: 40, left: 40 };
+    const width = +svg.attr("width") - margin.left - margin.right;
+    const height = +svg.attr("height") - margin.top - margin.bottom;
+
+    const chart = svg.append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    // X Scale
+    const x = d3.scaleBand()
+        .domain(labels)
+        .range([0, width])
+        .padding(0.2);
+
+    // Y Scale
+    const y = d3.scaleLinear()
+        .domain([0, d3.max(data)])
+        .range([height, 0]);
+
+    // Bars
+    chart.selectAll(".bar")
+        .data(data)
+        .enter()
+        .append("rect")
+        .attr("class", "bar")
+        .attr("x", (d, i) => x(labels[i]))
+        .attr("y", d => y(d))
+        .attr("width", x.bandwidth())
+        .attr("height", d => height - y(d));
+
+    // X-axis
+    chart.append("g")
+        .attr("transform", `translate(0,${height})`)
+        .call(d3.axisBottom(x));
+
+    // Y-axis
+    chart.append("g")
+        .call(d3.axisLeft(y));
+
+    // Axis labels
+    svg.append("text")
+        .attr("x", width / 2 + margin.left)
+        .attr("y", height + margin.top + 35)
+        .attr("text-anchor", "middle")
+        .text("Colors");
+
+    svg.append("text")
+        .attr("x", -(height / 2) - margin.top)
+        .attr("y", 15)
+        .attr("transform", "rotate(-90)")
+        .attr("text-anchor", "middle")
+        .text("# of Votes");
+</script>
+
+</body>
+
+</html>

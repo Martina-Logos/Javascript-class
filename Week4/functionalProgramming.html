@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MWF</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+    
+        h2 {
+            color: #333;
+        }
+    
+        button {
+            margin: 5px 0;
+            padding: 8px 12px;
+            border: none;
+            background: #2d6a4f;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover {
+      background: #1b4332;
+    }
+    .output {
+      margin-top: 10px;
+      padding: 10px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      min-height: 20px;
+    }
+    section {
+      margin-bottom: 25px;
+      padding: 15px;
+      background: #e9ecef;
+      border-radius: 8px;
+    }
+</style>
+
+</head>
+<body>
+    <!-- functional-programmimg principles -->
+     <section>
+     <h2>1.functional-programmimg (map, filter, reduce) </h2>
+
+     <button onclick="showStockValue()">Show Total Stock value</button>
+     <button onclick="showPremiumFurniture()">Show Premium Furniture</button>
+     <div id="fpOutput" class="output"></div>
+</section>
+<!-- High order functions -->
+
+<h2>High-order functions (Fees and discounts)</h2>
+<button onclick="calculateWithTransport()">Apply 5% Transport Fee</button>
+<button onclick="calculateWithDiscount()">Apply 10% Discount</button>
+<div id="hofOutput" class="output"></div>
+
+
+<!-- Closures -->
+<section>
+    <h2>3. Closures (Track Sales per Agent)</h2>
+    <button onclick="johnSaleHandler()">Record Sale for John</button>
+    <button onclick="marySaleHandler()">Record Sale for Mary</button>
+    <div id="closureOutput" class="output"></div>
+</section>
+
+<!-- Constructor vs Factory -->
+<section>
+    <h2>4. Constructor vs Factory Functions</h2>
+    <button onclick="createWithConstructor()">Create Chair (Constructor)</button>
+    <button onclick="createWithFactory()">Create Timber (Factory)</button>
+    <div id="cfOutput" class="output"></div>
+</section>
+
+
+    <script src="FunctionalPrograming.js"></script>
+</body>
+</html>

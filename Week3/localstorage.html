@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Storage Demo</title>
+</head>
+<body>
+  <h2>Storage Example</h2>
+
+  <!-- Input field -->
+  <input type="text" id="username" placeholder="Enter your name">
+
+  <!-- Buttons for Local and Session Storage -->
+  <button onclick="saveLocal()">Save to Local Storage</button>
+  <button onclick="saveSession()">Save to Session Storage</button>
+
+  <!-- Button to show saved data -->
+  <button onclick="showData()">Show Stored Data</button>
+
+  <!-- Display area -->
+  <p id="output"></p>
+
+  <!-- Link to JS -->
+  <script src="localstorage-vs-sessionstorage.js"></script>
+
+   <!-- How it works:
+
+ Open localstorage-vs-sessionstorage.html in your browser.
+
+ Type a name and click "Save to Local Storage" — it will remain even after closing and reopening the browser.
+
+ Type another name and click "Save to Session Storage" — it will disappear when you close the tab.
+
+ Click "Show Stored Data" to see what’s stored in both places. -->
+</body>
+</html>
